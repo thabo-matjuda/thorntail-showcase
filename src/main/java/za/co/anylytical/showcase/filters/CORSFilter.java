@@ -22,7 +22,7 @@ public class CORSFilter implements ContainerResponseFilter {
     public static final String ALLOW_HEADERS_KEY = "Access-Control-Allow-Headers";
     public static final String ALLOW_METHODS_KEY = "Access-Control-Allow-Methods";
     public static final String ACCESS_CONTROL_MAX_AGE = "Access-Control-Max-Age";
-
+                                             
 
     @Override
     public void filter(ContainerRequestContext containerRequestContext, ContainerResponseContext containerResponseContext) {
