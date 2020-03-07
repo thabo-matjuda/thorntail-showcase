@@ -2,14 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.example</groupId>
-    <artifactId>demo-rest</artifactId>
-    <name>Thorntail Example</name>
+    <groupId>za.co.anylytical.showcase</groupId>
+    <artifactId>thorntail-rest-services</artifactId>
+    <name>Thorntail REST API Showcase</name>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <properties>
-        <version.thorntail>2.3.0.Final</version.thorntail>
+        <version.thorntail>2.6.0.Final</version.thorntail>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <failOnMissingWebXml>false</failOnMissingWebXml>
@@ -29,13 +29,12 @@
     </dependencyManagement>
 
     <build>
-        <finalName>demo</finalName>
+        <finalName>thorntail-api</finalName>
         <plugins>
             <plugin>
                 <groupId>io.thorntail</groupId>
                 <artifactId>thorntail-maven-plugin</artifactId>
                 <version>${version.thorntail}</version>
-
                 <executions>
                     <execution>
                         <goals>
@@ -48,16 +47,17 @@
     </build>
 
     <dependencies>
-
         <dependency>
             <groupId>io.thorntail</groupId>
             <artifactId>swagger</artifactId>
-        </dependency><dependency>
-        <groupId>io.thorntail</groupId>
-        <artifactId>jaxrs</artifactId>
-    </dependency><dependency>
-        <groupId>io.thorntail</groupId>
-        <artifactId>swagger-webapp</artifactId>
-    </dependency>
+        </dependency>
+        <dependency>
+            <groupId>io.thorntail</groupId>
+            <artifactId>jaxrs</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.thorntail</groupId>
+            <artifactId>swagger-webapp</artifactId>
+        </dependency>
     </dependencies>
 </project>

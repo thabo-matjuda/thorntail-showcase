@@ -1,0 +1,32 @@
+{
+	"info": {
+		"_postman_id": "7a8eae51-9553-4da4-8597-68d76782f17d",
+		"name": "Thorntail API",
+		"description": "For the times I play around with thorntail API. This will be the playground for that.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Sample Resource - Text API",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8881/that-service/text",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8881",
+					"path": [
+						"that-service",
+						"text"
+					]
+				},
+				"description": "An API to call the REST API at ${app-path}/text"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

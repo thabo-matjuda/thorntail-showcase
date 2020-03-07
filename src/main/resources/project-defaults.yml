@@ -1,0 +1,6 @@
+
+thorntail:
+  http:
+    port: 8881
+  context:
+    path: that-service
