@@ -9,7 +9,7 @@
     <packaging>war</packaging>
 
     <properties>
-        <version.thorntail>2.6.0.Final</version.thorntail>
+        <version.thorntail>2.7.0.Final</version.thorntail>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <failOnMissingWebXml>false</failOnMissingWebXml>
@@ -41,10 +41,87 @@
                             <goal>package</goal>
                         </goals>
                     </execution>
+<!--                    <execution>-->
+<!--                        <id>start</id>-->
+<!--                        <phase>none</phase>-->
+<!--                    </execution>-->
+<!--                    <execution>-->
+<!--                        <id>stop</id>-->
+<!--                        <phase>none</phase>-->
+<!--                    </execution>-->
                 </executions>
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>docker</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>io.fabric8</groupId>
+                        <artifactId>docker-maven-plugin</artifactId>
+                        <configuration>
+                            <images>
+                                <image>
+                                    <name>${project.build.finalName}</name>
+                                    <run>
+                                        <ports>
+                                            <port>8881:8881</port>
+                                        </ports>
+                                    </run>
+                                    <build>
+                                        <from>java:openjdk-8-jdk</from>
+                                        <ports>
+                                            <port>8881</port>
+                                        </ports>
+                                        <assembly>
+                                            <basedir>/</basedir>
+                                            <inline>
+                                                <files>
+                                                    <file>
+                                                        <source>${project.build.directory}/${build.finalName}-thorntail.jar</source>
+                                                        <outputDirectory>/opt</outputDirectory>
+                                                    </file>
+                                                </files>
+                                            </inline>
+                                        </assembly>
+                                        <entryPoint>
+                                            <shell>java -jar /opt/${build.finalName}-thorntail.jar -Djava.net.preferIPv4Stack=true -Djava.net.preferIPv4Addresses=true</shell>
+                                        </entryPoint>
+                                    </build>
+                                </image>
+                            </images>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>build</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>pre-integration-test</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>start</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>post-integration-test</id>
+                                <phase>post-integration-test</phase>
+                                <goals>
+                                    <goal>stop</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
 
     <dependencies>
 
