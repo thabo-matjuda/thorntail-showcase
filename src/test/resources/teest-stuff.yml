@@ -1,0 +1,7 @@
+version: "3"
+services:
+  image: "thorntail-api:latest"
+    container_name: "test-thonrtail-api"
+    ports:
+      - "8881:8881"
+    command: java -jar /opt/thorntail-api-thorntail.jar -Djava.net.preferIPv4Stack=true -Djava.net.preferIPv4Addresses=true
