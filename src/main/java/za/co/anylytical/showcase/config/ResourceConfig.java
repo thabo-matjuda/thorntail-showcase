@@ -10,6 +10,6 @@ import javax.ws.rs.core.Application;
  * <a href="mailto:tl.matjuda@gmail.com">Personal GMail</a>
  */
 
-@ApplicationPath("/")
+@ApplicationPath("/that-service")
 public class ResourceConfig extends Application {
 }
